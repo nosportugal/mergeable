@@ -116,6 +116,7 @@ Validator List
     validators/age.rst
     validators/approval.rst
     validators/assignee.rst
+    validators/author.rst
     validators/baseRef.rst
     validators/changeset.rst
     validators/commit.rst
@@ -159,6 +160,7 @@ Operator List
 .. toctree::
     operators/and.rst
     operators/or.rst
+    operators/not.rst
 
 
 Actions

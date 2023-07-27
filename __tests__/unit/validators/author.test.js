@@ -1,4 +1,4 @@
-const Author = require('../../../lib/filters/author')
+const Author = require('../../../lib/validators/author')
 const Helper = require('../../../__fixtures__/unit/helper')
 const Teams = require('../../../lib/validators/options_processor/teams')
 
@@ -13,8 +13,8 @@ test('should fail with unexpected author', async () => {
       regex: otherAuthorName
     }
   }
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('fail')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('fail')
 })
 
 test('should pass with expected author', async () => {
@@ -25,8 +25,8 @@ test('should pass with expected author', async () => {
       regex: authorName
     }
   }
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('pass')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('pass')
 })
 
 test('should fail with excluded author', async () => {
@@ -37,8 +37,8 @@ test('should fail with excluded author', async () => {
       regex: authorName
     }
   }
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('fail')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('fail')
 })
 
 test('should pass with excluded author', async () => {
@@ -49,8 +49,8 @@ test('should pass with excluded author', async () => {
       regex: otherAuthorName
     }
   }
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('pass')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('pass')
 })
 
 test('should pass with expected author from correct team', async () => {
@@ -63,8 +63,8 @@ test('should pass with expected author from correct team', async () => {
     team: 'org/team-slug'
   }
   Teams.extractTeamMemberships = jest.fn().mockReturnValue([authorName])
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('pass')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('pass')
 })
 
 test('should fail with expected author from incorrect team', async () => {
@@ -77,8 +77,8 @@ test('should fail with expected author from incorrect team', async () => {
     team: 'org/team-slug'
   }
   Teams.extractTeamMemberships = jest.fn().mockReturnValue([])
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('fail')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('fail')
 })
 
 test('should fail with unexpected author from correct team', async () => {
@@ -91,8 +91,8 @@ test('should fail with unexpected author from correct team', async () => {
     team: 'org/team-slug'
   }
   Teams.extractTeamMemberships = jest.fn().mockReturnValue([authorName])
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('fail')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('fail')
 })
 
 test('should pass when the author is a member of the team', async () => {
@@ -102,8 +102,8 @@ test('should pass when the author is a member of the team', async () => {
     team: 'org/team-slug'
   }
   Teams.extractTeamMemberships = jest.fn().mockReturnValue([authorName])
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('pass')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('pass')
 })
 
 test('should fail when the author is not a member of the team', async () => {
@@ -114,8 +114,8 @@ test('should fail when the author is not a member of the team', async () => {
     team: 'org/team-slug'
   }
   Teams.extractTeamMemberships = jest.fn().mockReturnValue([otherAuthorName])
-  const filter = await author.processFilter(createMockContext(authorName), settings)
-  expect(filter.status).toBe('fail')
+  const validation = await author.processValidate(createMockContext(authorName), settings)
+  expect(validation.status).toBe('fail')
 })
 
 const createMockContext = (author) => {

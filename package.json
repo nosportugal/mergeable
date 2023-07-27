@@ -1,6 +1,6 @@
 {
   "name": "@mergeability/mergeable",
-  "version": "2.0.0",
+  "version": "2.17.3",
   "description": "",
   "author": "Justin Law <hello@justinlaw.org> (https://github.io/mergeability/mergeable), Shine Lee <aungshine@gmail.com>",
   "license": "AGPL-3.0-only",
@@ -29,7 +29,7 @@
     "moment-timezone": "^0.5.31",
     "node-fetch": "^2.6.1",
     "p-iteration": "^1.1.8",
-    "probot": "11.0.1",
+    "probot": "^12.2.8",
     "prom-client": "^13.1.0"
   },
   "devDependencies": {
