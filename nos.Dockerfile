@@ -7,7 +7,7 @@ RUN npm ci --only=production
 
 COPY . .
 
-ENV PORT=${PORT:-3000}
+ENV PORT=8080
 USER 1000:1000
 
 CMD ./node_modules/probot/bin/probot.js run ./index.js
