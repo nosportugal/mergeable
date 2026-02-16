@@ -17,7 +17,7 @@
     "lint": "standard --fix"
   },
   "dependencies": {
-    "cache-manager": "^7.2.8",
+    "cache-manager": "^3.6.3",
     "cache-manager-ioredis": "^2.1.0",
     "colors": "^1.4.0",
     "express-prometheus-middleware": "^1.2.0",
